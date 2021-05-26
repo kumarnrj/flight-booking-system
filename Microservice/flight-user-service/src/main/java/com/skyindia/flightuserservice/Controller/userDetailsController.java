@@ -94,13 +94,13 @@ public class userDetailsController {
     public ResponseEntity<?> Adduser(@RequestBody User user ){
 
 
-        // user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        User user1 = userService.addUser(user);
         System.out.println(user.getPassword());
-        if(userService.addUser(user)==null){
+        if(user1==null){
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Already Present");
         }
         else{
-            User user1 = userService.addUser(user);
+
             return  ResponseEntity.ok().body(user1);     }
     }
 
