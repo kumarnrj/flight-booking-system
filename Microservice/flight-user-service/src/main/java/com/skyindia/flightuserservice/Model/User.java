@@ -16,7 +16,7 @@ public class User {
     private String contact;
     private int age;
     private String password;
-    private String role="ROLE_CUST";
+    private String role="ROLE_USER";
     private boolean isAccountNonExpired=true;
     private boolean isAccountNonLocked=true;
     private boolean isCredentialsNonExpired=true;
