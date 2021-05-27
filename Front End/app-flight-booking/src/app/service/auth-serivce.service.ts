@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { flightDetail } from '../Models/FlightDetail';
 import { User } from '../Models/User';
 import { userDetails } from '../Models/UserDetails';
 
@@ -30,4 +31,17 @@ export class AuthSerivceService {
     
     return this.http.post(`${this.url}addUser`,user);
    }
+
+
+
+  //               flight detaisl
+  private flighturl="http://localhost:8080/api/"
+  
+  getFlightDetailsBySource(source:String,destination:String,date:any):Observable<flightDetail[]>{
+    return this.http.post<flightDetail[]>(`${this.flighturl}getBySource`,{
+      source:source,
+      destination:destination,
+      date:date
+    });
+  }
 }

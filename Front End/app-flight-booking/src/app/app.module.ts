@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms"
 import { AppRoutingModule } from './app-routing.module';
@@ -8,15 +8,21 @@ import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {HttpClientModule} from '@angular/common/http';
-import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component'
-
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { FlightSearchComponent } from './component/flight-search/flight-search.component'
+import {DatePipe} from '@angular/common';
+import { FlightDetailsComponent } from './component/flight-details/flight-details.component';
+import { BookFlightComponent } from './component/book-flight/book-flight.component'
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FlightSearchComponent,
+    FlightDetailsComponent,
+    BookFlightComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,8 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
     HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  schemas:[NO_ERRORS_SCHEMA],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

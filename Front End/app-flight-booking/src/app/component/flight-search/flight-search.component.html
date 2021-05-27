@@ -1,0 +1,98 @@
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 row-verify  ">
+    <div class="col-md-12">
+        <mdb-card>
+            <mdb-card-body class="px-lg-5 pt-5  ">
+                <div class="alert alert-success text-center" role="alert">
+                    Search Flight
+                  </div>
+                <form  (ngSubmit)="search()" novalidate >
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">SOURCE</label>
+                      <select [(ngModel)]="source" name="source" class="form-control" id="exampleFormControlSelect1">
+                        <option *ngFor="let source of SourceList" [value]="source" >{{source}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">DESTINATION</label>
+                        <select [(ngModel)]="destination" name="destination" class="form-control" id="exampleFormControlSelect2">
+                            <option *ngFor="let destination of DistinationList" [value]="destination" >{{destination}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="date1">Journey Date</label>
+                        <input [(ngModel)]="date2" name="date2" type="date" class="form-control" id="date1"  [min]="min" [max]="max">
+                      </div>
+                      <div class="text-center mb-3">
+                        <button  type="submit" mdbBtn gradient="aqua" 
+                            class="z-depth-1a waves-light"  mdbWavesEffect >Search
+                        </button>
+                    </div>
+                    
+                  </form>
+
+            </mdb-card-body>
+        </mdb-card>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- flight details table-->
+<div class="container-fluid mt-5 mb-5" *ngIf="searchClicked">
+  <div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Flight Detials</h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                
+                <tr>
+                    <th class="text-center">Sr.No</th>
+                    <th class="text-center">Flight No.</th>
+                    <th class="text-center">Source</th>
+                    <th class="text-center">Destination</th>
+                    <th class="text-center">Arrival Time</th>
+                    <th class="text-center">Departure Time</th>
+                    <th class="text-center">Duration</th>
+                    <th class="text-center">Price</th>
+                    <th  class="text-center">Book</th>
+                    
+                </tr>
+                
+                <tr *ngFor="let flight of flighDetailsList;let id=index" >
+                   <td>{{id+1}}</td>
+                    <td>
+                        {{flight?.flightNo}}
+                    </td>
+                    <td>
+                        {{flight?.source}}
+                    </td>
+                    <td>
+                       {{flight?.destination}}
+                    </td>
+                    <td>
+                       {{flight?.arrivalTime}}
+                    </td>
+                    <td>
+                       {{flight?.departureTime}}
+                    </td>
+                    <td>
+                       {{flight?.duration}}
+                    </td>
+                    <td>
+                      {{flight?.price}}
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button  mdbBtn type="button" color="success" class="waves-light" (click)="bookTicket(flight)" mdbWavesEffect>Book</button>
+                    </div>
+                    </td>
+                </tr>
+           
+            </table>
+           
+        
+        </div>
+</div>
+
