@@ -25,6 +25,12 @@ public class flightDetailsController {
         return  flightDetailsService.getAllFlights();
     }
 
+
+    @GetMapping("/byId/{flightId}")
+    public FlighDetails getFlightById(@PathVariable("flightId") String flighId){
+        return  flightDetailsService.getFlighById(flighId);
+    }
+
     @PostMapping("/getBySource")
     public List<FlighDetails> getFlightsBySource(@RequestBody Map<String,Object> request){
         String source = request.get("source").toString().toLowerCase();

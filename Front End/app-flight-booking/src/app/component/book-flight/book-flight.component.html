@@ -1,1 +1,321 @@
-<p>book-flight works!</p>
+<div *ngIf="!paymentStarted" class="container">
+<div *ngIf="!formSubmitted" class="container-fluid">
+    <div class="row ">
+        <div class="col-3 ">
+        </div>
+        <div class="row-login col-md-6 mt-5 mb-5 ">
+            <mdb-card>
+
+                <mdb-card-body class="px-lg-5 pt-0 ">
+                    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="md-form form-sm">
+                                    <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                    <input mdbInput type="text" id="form22" class="form-control"
+                                        formControlName="firstname" />
+                                    <label for="form22">FirstName</label>
+                                    <mdb-error *ngIf="
+                             firstName?.invalid &&
+                              (firstName?.dirty || firstName?.touched)
+                            ">
+                                        First Name is required
+                                    </mdb-error>
+                                    <mdb-success *ngIf="
+                                    firstName?.valid &&
+                              (firstName?.dirty || firstName?.touched)
+                            ">
+                                    </mdb-success>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="md-form form-sm">
+                                    <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                    <input mdbInput type="text" id="form23" class="form-control"
+                                        formControlName="lastname" />
+                                    <label for="form23">LastName</label>
+                                    <mdb-error *ngIf="
+                                    lastName?.invalid &&
+                                      (lastName?.dirty || lastName?.touched)
+                                    ">
+                                        Last Name is required
+                                    </mdb-error>
+                                    <mdb-success *ngIf="
+                                    lastName?.valid &&
+                                      (lastName?.dirty ||lastName?.touched)
+                                    ">
+                                    </mdb-success>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <mdb-icon fas icon="phone" class="prefix"></mdb-icon>
+                            <input mdbInput type="tel" id="form27" class="form-control" formControlName="contact" />
+                            <label for="form27">Phone</label>
+                            <mdb-error *ngIf="
+                            mobile?.invalid &&
+                              ( mobile?.dirty ||  mobile?.touched)
+                            ">
+                                <p *ngIf="mobile?.errors?.required" class="text-danger">Mobile is
+                                    required</p>
+                                <p *ngIf="mobile?.errors?.pattern" class="text-danger">Mobile
+                                    number should be of 10 digits</p>
+
+                            </mdb-error>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="md-form form-sm">
+                                    <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                    <input mdbInput type="number" id="form65" class="form-control"
+                                        formControlName="age" />
+                                    <label for="form65">Age</label>
+                                    <mdb-error *ngIf="
+                                    age?.invalid &&
+                                      ( age?.dirty ||  age?.touched)
+                                    ">
+                                        <p *ngIf="age?.errors?.required" class="text-danger">Age is
+                                            required</p>
+                                        <p *ngIf="age?.errors?.pattern" class="text-danger">Enter Right Age</p>
+
+                                    </mdb-error>
+
+                                </div>
+                            </div>
+                            <div class="col=6">
+                                <div class="md-form form-sm">
+                                    <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                    <input mdbInput type="text" id="form72" class="form-control"
+                                        formControlName="gender" />
+                                    <label for="form72">Gender i.e Male or Female</label>
+                                    <mdb-error *ngIf="
+                                    gender?.invalid &&
+                                      ( gender?.dirty ||  gender?.touched)
+                                    ">
+                                        <p *ngIf="gender?.errors?.required" class="text-danger">Gender is
+                                            required</p>
+                                        <p *ngIf="gender?.errors?.pattern" class="text-danger">Must be male or female
+                                        </p>
+
+                                    </mdb-error>
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hr">
+                        <div *ngIf="firstClicked">
+                            <div formArrayName="passengers" *ngFor="let pass of passenger.controls; let i = index">
+                                <div [formGroupName]="i">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="md-form form-sm">
+                                                <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                                <input mdbInput type="text" id="form1" class="form-control"
+                                                    formControlName="firstname" />
+                                                <label for="form1">FirstName</label>
+                                                <mdb-error *ngIf="
+                                        pass.get('firstname')?.invalid &&
+                                          (pass.get('firstname')?.dirty || pass.get('firstname')?.touched)
+                                        ">
+                                                    First Name is required
+                                                </mdb-error>
+                                                <mdb-success *ngIf="
+                                                pass.get('firstname')?.valid &&
+                                          (pass.get('firstname')?.dirty || pass.get('firstname')?.touched)
+                                        ">
+                                                </mdb-success>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="md-form form-sm">
+                                                <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                                <input mdbInput type="text" id="form2" class="form-control"
+                                                    formControlName="lastname" />
+                                                <label for="form2">LastName</label>
+                                                <mdb-error *ngIf="
+                                                pass.get('lastname')?.invalid &&
+                                                  (pass.get('lastname')?.dirty || pass.get('lastname')?.touched)
+                                                ">
+                                                    Last Name is required
+                                                </mdb-error>
+                                                <mdb-success *ngIf="
+                                                pass.get('lastname')?.valid &&
+                                                  (pass.get('lastname')?.dirty ||pass.get('lastname')?.touched)
+                                                ">
+                                                </mdb-success>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--contact-->
+                                    
+                                    <div class="md-form form-sm">
+                                        <mdb-icon fas icon="phone" class="prefix"></mdb-icon>
+                                        <input mdbInput type="tel" id="form3" class="form-control"
+                                            formControlName="contact" />
+                                        <label for="form3">Phone</label>
+                                        <mdb-error *ngIf="
+                                        pass.get('contact')?.invalid &&
+                                          ( pass.get('contact')?.dirty ||  pass.get('contact')?.touched)
+                                        ">
+                                            <p *ngIf="pass.get('contact')?.errors?.required" class="text-danger">Mobile
+                                                is
+                                                required</p>
+                                            <p *ngIf="pass.get('contact')?.errors?.pattern" class="text-danger">Mobile
+                                                number should be of 10 digits</p>
+                                        </mdb-error>
+                                    </div>
+                                    <!-- age & gender -->
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="md-form form-sm">
+                                                <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                                <input mdbInput type="number" id="form4" class="form-control"
+                                                    formControlName="age" />
+                                                <label for="form4">Age</label>
+                                                <mdb-error *ngIf="
+                                            pass.get('age')?.invalid &&
+                                              ( pass.get('age')?.dirty ||  pass.get('age')?.touched)
+                                            ">
+                                                    <p *ngIf="pass.get('age')?.errors?.required" class="text-danger">Age
+                                                        is
+                                                        required</p>
+                                                    <p *ngIf="pass.get('age')?.errors?.pattern" class="text-danger">
+                                                        Enter Right Age</p>
+
+                                                </mdb-error>
+
+                                            </div>
+                                        </div>
+                                        <div class="col=6">
+                                            <div class="md-form form-sm">
+                                                <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+                                                <input mdbInput type="text" id="form7" class="form-control"
+                                                    formControlName="gender" />
+                                                <label for="form7">Gender i.e Male or Female</label>
+                                                <mdb-error *ngIf="
+                                            pass.get('gender')?.invalid &&
+                                              ( pass.get('gender')?.dirty ||  pass.get('gender')?.touched)
+                                            ">
+                                                    <p *ngIf="pass.get('gender')?.errors?.required" class="text-danger">
+                                                        Gender is
+                                                        required</p>
+                                                    <p *ngIf="pass.get('gender')?.errors?.pattern" class="text-danger">
+                                                        Must be male or female
+                                                    </p>
+
+                                                </mdb-error>
+
+                                            </div>
+                                        </div>
+                                        <button type="button" mdbBtn color="danger" 
+                                class="z-depth-1a waves-light" (click)="remove(i)" mdbWavesEffect>Remove
+                            </button>
+                                    </div>
+                                </div>
+                                <hr class="hr">
+                            </div>
+                        </div>
+
+
+
+                        <div class="text-center mb-3">
+                            <button type="button" mdbBtn color="secondary" [outline]="isOutline"
+                                class="z-depth-1a waves-light" (click)="addPassengerGroupClick()" mdbWavesEffect>Add
+                                Adults
+                            </button>
+                            <button [disabled]="!registrationForm.valid" type="submit" mdbBtn color="secondary"
+                                [outline]="isOutline" class="z-depth-1a waves-light" mdbWavesEffect>Continue
+                            </button>
+
+                        </div>
+
+                        <hr>
+
+
+                    </form>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+</div>
+</div>
+
+<div *ngIf="paymentStarted" class="container-fluid  justify-content-center">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-md-4 mt-5 mb-5 col-sm-4">
+            <mdb-card>
+               
+                <mdb-card-body>
+
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h4 class="font-weight-bold">Order Summery</h4>
+                    </mdb-card-title>
+
+                    <!--Text-->
+                    <mdb-card-text>You'll be securely redirected to
+                        razorpay Payment Gateway to complete your Booking.
+                    </mdb-card-text>
+                    <hr>
+                   <div class="row">
+                       <div class="col-6">
+                        Source: 
+                        <span class="source">{{flighDetail?.source|titlecase}}</span>
+                       </div>
+                       <div class="col-6">
+                        Destination:
+                        <span class="destination"> {{flighDetail?.destination|titlecase}}</span>
+                       
+                       </div>
+                   </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            Arrival Time:
+                            <span class="font-weight-bold"> {{flighDetail?.arrivalTime}}</span>
+                        </div>
+                        <div class="col-6">
+                            Departure Time:
+                            <span class="font-weight-bold"> {{flighDetail?.departureTime}}</span>
+                        </div>
+                    </div>
+                    <p>
+                        
+                       
+                    </p>
+                    <p>Passengers:
+                        <span class="font-weight-bold">{{registrationForm.value.passengers.length+1}}</span>  
+                    </p>
+                    <p>Price:
+                    
+                     <span class="price-span"><mdb-icon fas icon="rupee-sign" class="prefix"></mdb-icon> 
+                        {{flighDetail?.price}}
+                     </span>  
+                    </p>
+                    
+                    <hr>
+                    <h3>Total:
+                        <span class="total-span">  <mdb-icon fas icon="rupee-sign" class="prefix"></mdb-icon>
+                            {{total}}
+                         </span> 
+                    </h3>
+                    <hr>
+                    <div class=" row ml-2 btnClass">
+                        <div class="col col-sm ">
+                            <button class="block" type="button" mdbBtn color="success" (click)="paymentStart()" mdbWavesEffect>Pay Now</button>
+                    
+                        </div>
+                        <div class="col col-sm ">
+                            <button class="block" type="button" mdbBtn color="danger"(click)="paymentCancel()" mdbWavesEffect>Cancel</button>
+                        </div>
+                    
+                    </div>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+</div>

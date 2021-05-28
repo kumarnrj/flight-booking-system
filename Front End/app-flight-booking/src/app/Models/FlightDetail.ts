@@ -3,9 +3,9 @@ export interface flightDetail{
     date:String,
     departureTime:String,
     arrivalTime:String,
-    destination:String,
+    destination:string,
     flightNo:String,
-    source:String,
+    source:string,
     duration:String,
-    price:String
+    price:string
 }

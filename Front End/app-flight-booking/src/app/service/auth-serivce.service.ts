@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BookingDetails } from '../Models/BookingDetails';
 import { flightDetail } from '../Models/FlightDetail';
 import { User } from '../Models/User';
 import { userDetails } from '../Models/UserDetails';
@@ -44,4 +45,23 @@ export class AuthSerivceService {
       date:date
     });
   }
+
+  // get by id
+  getFlightDetailsById(id:String|undefined):Observable<flightDetail>{
+    return this.http.get<flightDetail>(`${this.flighturl}byId/${id}`);
+  }
+
+  // booking service
+  private bookingUrl="http://localhost:8082/api/"
+  addBooking(flightDetail:BookingDetails){
+    
+      return this.http.post(`${this.bookingUrl}addBooking`,flightDetail);
+  }
+  // addBooking(flightDetail:BookingDetails){
+  //   console.log(flightDetail)
+  // }
+
+ // payment service 
+ createPaymentOrder(){} 
+
 }

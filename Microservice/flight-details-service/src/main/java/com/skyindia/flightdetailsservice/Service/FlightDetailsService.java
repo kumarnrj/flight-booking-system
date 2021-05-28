@@ -36,4 +36,8 @@ public class FlightDetailsService {
             return  true;
         }
     }
+
+    public FlighDetails getFlighById(String flighId) {
+        return flightDetailsRepo.findById(flighId).get();
+    }
 }

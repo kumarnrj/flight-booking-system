@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MinLengthValidator } from '@angular/forms';
+import { Router } from '@angular/router';
 import { flightDetail } from 'src/app/Models/FlightDetail';
 import { AuthSerivceService } from 'src/app/service/auth-serivce.service';
 import swal from 'sweetalert2';
@@ -30,7 +31,8 @@ private yyyy =this. today.getFullYear();
  
   public max=this.yyyy+"-"+this.mm+"-"+this.dd ;
   
-  constructor(private datepipe:DatePipe,private auth:AuthSerivceService) { }
+  constructor(private datepipe:DatePipe,private auth:AuthSerivceService,
+    private router:Router) { }
 
   ngOnInit(): void {
    
@@ -41,22 +43,27 @@ console.log(this.max);
 
   // searching the flight
   search(){
-    this.searchClicked = true;
-    console.log(this.source,this.destination,this.date2);
-    let date = this.datepipe.transform(this.date2,"dd-MM-yyyy");
- 
-    this.auth.getFlightDetailsBySource(this.source,this.destination,date)
-    .subscribe((res:flightDetail[])=>{
-      this.flighDetailsList = res;
-      if(this.flighDetailsList.length===0){
-           swal.fire("Sorry","No Flights available ","info");
-           this.searchClicked=false;
-      }
-    })
+    if(this.source==="" || this.destination==="" || this.date2===""){
+      swal.fire("","Fields cannot be empty","error");
+    }else{
+      this.searchClicked=true;
+      console.log(this.source,this.destination,this.date2);
+      let date = this.datepipe.transform(this.date2,"dd-MM-yyyy");
+   
+      this.auth.getFlightDetailsBySource(this.source,this.destination,date)
+      .subscribe((res:flightDetail[])=>{
+        this.flighDetailsList = res;
+        if(this.flighDetailsList.length===0){
+             swal.fire("Sorry","No Flights available ","info");
+             this.searchClicked=false;
+        }
+      })
+    }
+    
   }
 
   // booking a flight
   bookTicket(flight:flightDetail){
-
+           this.router.navigate(["flight-book",{id:flight._id}]);
   }
 }
