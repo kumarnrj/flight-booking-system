@@ -104,7 +104,7 @@ public class userDetailsController {
             return  ResponseEntity.ok().body(user1);     }
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/updateUser/{userId}")
     public User updateUser(@RequestBody User user, @PathVariable("userId") String userId){
         System.out.println(user);
         User user1= userService.updateUser(user,userId);

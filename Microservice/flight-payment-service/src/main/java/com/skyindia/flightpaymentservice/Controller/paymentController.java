@@ -27,8 +27,7 @@ public class paymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @Autowired
-    private RestTemplate restTemplate;
+
 
 
 

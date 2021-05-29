@@ -1,0 +1,61 @@
+<div class="container mt-5 mb-5">
+    <!-- Editable table -->
+    <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">User Detials</h3>
+        <div class="card-body">
+            <div id="table" class="table-editable">
+                
+                
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                    
+                    <tr>
+                        <th class="text-center">Sr.No</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Mobile No</th>
+                        <th class="text-center">Source</th>
+                        <th class="text-center">Destination</th>
+                        <th class="text-center">Arrival Time</th>
+                        <th class="text-center">Departure Time</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Total Passengers</th>
+                       
+                    </tr>
+                    
+                    <tr *ngFor="let booking of bookingList; let id = index" >
+                       <td>{{id+1}}</td>
+                        <td>
+                            {{booking?.custmerFirstname}} {{booking?.customerLastname}}
+                        </td>
+                        <td>
+                            {{booking?.customerContact}}
+                        </td>
+                        <td>
+                            {{booking?.source}}
+                        </td>
+                        <td>
+                            {{booking?.destination}}
+                        </td>
+                        <td>
+                            {{booking?.arrivalTime}}
+                        </td>
+                        <td>
+                            {{booking?.departureTime}}
+                        </td>
+                        <td>
+                            {{booking?.date}}
+                        </td>
+                        <td>
+                            {{booking?.passengers.length+1}}
+                        </td>
+                       
+                        
+               
+                    </tr>
+               
+                </table>
+            
+            </div>
+        </div>
+    </div>
+   
+</div>

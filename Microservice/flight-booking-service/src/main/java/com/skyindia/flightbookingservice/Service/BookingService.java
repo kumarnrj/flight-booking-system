@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -35,5 +36,17 @@ public class BookingService {
     public FlightBookingDetails updateBooking(FlightBookingDetails flightBookingDetails) {
          return  repository.save(flightBookingDetails);
 
+    }
+
+    public FlightBookingDetails updatePaymentStatus(String paymentId, String paymentStatus, String orderId) {
+        Optional<FlightBookingDetails> existsBooking = repository.findById(orderId);
+
+
+        FlightBookingDetails updateBooking = existsBooking.get();
+        updateBooking.setPaymentStatus(paymentStatus);
+        updateBooking.setPaymentId(paymentId);
+        updateBooking.setBookingStatus("CONFIRM");
+        repository.save(updateBooking);
+        return  updateBooking;
     }
 }

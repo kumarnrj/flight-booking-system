@@ -32,7 +32,21 @@ export class AuthSerivceService {
     
     return this.http.post(`${this.url}addUser`,user);
    }
+ 
+   // getting all user data 
+   getAllUser(){
+     return this.http.get(`${this.url}allUser`);
+   }
 
+   // delete a user 
+   removeUser(userId:String){
+     return this.http.delete(`${this.url}deleteUser/${userId}`);
+   }
+
+   // update a user
+   updateUser(user:userDetails,userId:String){
+     return this.http.put(`${this.url}updateUser/${userId}`,user);
+   }
 
 
   //               flight detaisl
@@ -51,17 +65,50 @@ export class AuthSerivceService {
     return this.http.get<flightDetail>(`${this.flighturl}byId/${id}`);
   }
 
-  // booking service
+  //                             booking service
   private bookingUrl="http://localhost:8082/api/"
   addBooking(flightDetail:BookingDetails){
     
       return this.http.post(`${this.bookingUrl}addBooking`,flightDetail);
   }
-  // addBooking(flightDetail:BookingDetails){
-  //   console.log(flightDetail)
-  // }
+  
+  // getting all the data
+
+  getAllBooking(){
+    return this.http.get(`${this.bookingUrl}allbooking`)
+  }
 
  // payment service 
- createPaymentOrder(){} 
+ private paymentUrl ="http://localhost:8083/api/"
+ createPaymentOrder(amount:any,customerOId:String|undefined){
+  return this.http.post(`${this.paymentUrl}create_order`,{
+    amount:amount,
+    custOId:customerOId
+   })
+ } 
+
+ // updating the payment order
+updatePaymentStatus(payment_id: string, order_id: string, status: string){
+  return this.http.post(`${this.paymentUrl}update_order`, {
+   payment_id: payment_id,
+   order_id: order_id,
+   status: status
+ })}
+
+// updating the payment status in booking 
+updatePaymentStatusInBooking(payment_id:String,status:String,custorderId:String|undefined){
+  return this.http.put(`${this.bookingUrl}updatePaymentStatus`,{
+    payment_id:payment_id,
+    paymentStatus:status,
+    orderId:custorderId
+  });
+
+}
+
+
+// important funtion
+isUserLoggedIn(){
+  return !!localStorage.getItem("token");
+}
 
 }

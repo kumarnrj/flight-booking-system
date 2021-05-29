@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.datatransfer.FlavorListener;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -45,17 +46,26 @@ public class BookingController {
        return ResponseEntity.ok(list);
     }
 
-    @PostMapping("addBooking")
+    @PostMapping("/addBooking")
     public ResponseEntity<?> addBooking(@RequestBody FlightBookingDetails flightBookingDetails){
         System.out.println(flightBookingDetails);
         FlightBookingDetails flightBookingDetails1 = service.addBooking(flightBookingDetails);
         return ResponseEntity.ok(flightBookingDetails);
     }
 
-    @PutMapping("updateBooking")
+    @PutMapping("/updateBooking")
     public ResponseEntity<?> updateBooking(@RequestBody FlightBookingDetails flightBookingDetails){
         FlightBookingDetails flightBookingDetails1 = service.updateBooking(flightBookingDetails);
         return ResponseEntity.ok(flightBookingDetails);
+    }
+
+    @PutMapping("/updatePaymentStatus")
+    public ResponseEntity<?> updatePaymentStatus(@RequestBody Map<String,Object> orderDetails){
+        String paymentStatus=orderDetails.get("paymentStatus").toString();
+        String paymentId= orderDetails.get("payment_id").toString();
+        String orderId = orderDetails.get("orderId").toString();
+        FlightBookingDetails updatedFlightDetail = service.updatePaymentStatus(paymentId,paymentStatus,orderId);
+        return ResponseEntity.ok(updatedFlightDetail);
     }
 
 

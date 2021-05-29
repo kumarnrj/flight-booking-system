@@ -12,7 +12,10 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
 import { FlightSearchComponent } from './component/flight-search/flight-search.component'
 import {DatePipe} from '@angular/common';
 import { FlightDetailsComponent } from './component/flight-details/flight-details.component';
-import { BookFlightComponent } from './component/book-flight/book-flight.component'
+import { BookFlightComponent } from './component/book-flight/book-flight.component';
+import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { UserDetailComponent } from './component/user-detail/user-detail.component';
+import { BookingDetailComponent } from './component/booking-detail/booking-detail.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,10 @@ import { BookFlightComponent } from './component/book-flight/book-flight.compone
     PageNotFoundComponent,
     FlightSearchComponent,
     FlightDetailsComponent,
-    BookFlightComponent
+    BookFlightComponent,
+    AdminDashboardComponent,
+    UserDetailComponent,
+    BookingDetailComponent
   ],
   imports: [
     BrowserModule,

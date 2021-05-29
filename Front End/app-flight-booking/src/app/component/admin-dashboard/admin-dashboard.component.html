@@ -1,0 +1,118 @@
+<div class="container-fluid">
+    <mdb-breadcrumb customClass="special-color white-text mt-5">
+        <mdb-breadcrumb-item routerLink="/">Home</mdb-breadcrumb-item>
+        <mdb-breadcrumb-item class="active" >Dashboard</mdb-breadcrumb-item>
+      </mdb-breadcrumb>
+    <div class="row">
+       
+        <div class="col">
+            <mdb-card >
+                <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                   
+                    <i class="fas fa-chalkboard-teacher fa-7x"></i>
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <!--Card content-->
+                <mdb-card-body>
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h4>Profile</h4>
+                    </mdb-card-title>
+                    
+                 
+                    <mdb-card-text>
+                    </mdb-card-text>
+
+                    <a mdbBtn color="default" [outline]="isoutline" (click)="myProfile()" mdbWavesEffect>View Profile</a>
+                </mdb-card-body>
+            </mdb-card>
+            <!-- Card -->
+        </div>
+        <div class="col">
+            <mdb-card >
+                <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                    
+                    <i class="fas fa-users fa-7x"></i>
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <!--Card content-->
+                <mdb-card-body>
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h4>User</h4>
+                    </mdb-card-title>
+                    
+                    <!--Text-->
+                    <mdb-card-text>
+                    </mdb-card-text>
+
+                    <a mdbBtn color="info" [outline]="isoutline" (click)="viewUser()" mdbWavesEffect>View Users</a>
+                </mdb-card-body>
+            </mdb-card>
+            <!-- Card -->
+        </div>
+        <div class="col">
+            <mdb-card >
+                <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                    <!-- Card img -->
+                    <!-- <mdb-card-img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap"></mdb-card-img> -->
+                    <i class="fas fa-chalkboard-teacher fa-7x"></i>
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <!--Card content-->
+                <mdb-card-body>
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h4>Booking</h4>
+                    </mdb-card-title>
+                  
+                    <!--Text-->
+                    <mdb-card-text>
+                    </mdb-card-text>
+
+                    <a mdbBtn color="warning" [outline]="isoutline" (click)="booking()" mdbWavesEffect>View Booking</a>
+                </mdb-card-body>
+            </mdb-card>
+            <!-- Card -->
+        </div>
+
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col-4"></div>
+        <div class="col-4">
+           
+                <mdb-card >
+                    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                        <!-- Card img -->
+                        <!-- <mdb-card-img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap"></mdb-card-img> -->
+                        <i class="fas fa-plane fa-7x"></i>
+                        <a>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+                    <!--Card content-->
+                    <mdb-card-body>
+                        <!--Title-->
+                        <mdb-card-title>
+                            <h4>Add Flight</h4>
+                        </mdb-card-title>
+                        
+                        <!--Text-->
+                        <mdb-card-text>
+                        </mdb-card-text>
+    
+                        <a mdbBtn color="danger" [outline]="isoutline" (click)="myProfile()" mdbWavesEffect>Add Flight</a>
+                    </mdb-card-body>
+                </mdb-card>
+                <!-- Card -->
+           
+        </div>
+    </div>
+</div>
+

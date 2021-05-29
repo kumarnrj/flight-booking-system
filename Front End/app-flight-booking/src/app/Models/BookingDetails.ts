@@ -1,7 +1,7 @@
 
 
 export interface BookingDetails{
-    customerId:String,
+    customerId:String|null,
      custmerFirstname: String,
       customerLastname:String,
       customerContact:String,
