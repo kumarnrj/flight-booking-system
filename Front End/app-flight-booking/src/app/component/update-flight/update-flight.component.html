@@ -1,0 +1,271 @@
+<div class="container mt-5 mb-5">
+    <!-- Editable table -->
+    <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Flight Detials</h3>
+        <div class="card-body">
+            <div id="table" class="table-editable">
+                <span class="table-add float-right mb-3 mr-2">
+                    <a class="text-success" (click)="addFlight()">
+                        <mdb-icon mdbTooltip="Add Flight" fas icon="plus" size="2x"></mdb-icon>
+                    </a>
+                </span>
+                
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                    
+                    <tr>
+                        <th class="text-center">Sr.No</th>
+                        <th class="text-center">Flight No</th>
+                        <th class="text-center">Source</th>
+                        <th class="text-center">Destination</th>
+                        <th class="text-center">Arrival Time</th>
+                        <th class="text-center">Departure Time</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Remove</th>
+                    </tr>
+                    
+                    <tr *ngFor="let flight of flightList; let id = index" >
+                       <td>{{id+1}}</td>
+                        <td>
+                            {{flight?.flightNo}}
+                        </td>
+                        <td>
+                            {{flight?.source}}
+                        </td>
+                        <td>
+                            {{flight?.destination}}
+                        </td>
+                        <td>
+                            {{flight?.arrivalTime}}
+                        </td>
+                        <td>
+                            {{flight?.departureTime}}
+                        </td>
+                        <td>
+                            {{flight?.date}}
+                        </td>
+                        <td>
+                            {{flight?.price}}
+                        </td>
+                        
+                        <td>
+                            <span class="table-up">
+                                <a class="indigo-text">
+
+                                    <mdb-icon mdbTooltip="Edit Details" fas icon="edit" (click)="edit(flight)"></mdb-icon>
+                                </a>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="table-up">
+                                <a class="text-danger">
+
+                                    <mdb-icon mdbTooltip="Remove" fas icon="trash-alt" (click)="remove(id,flight._id)"></mdb-icon>
+                                </a>
+                            </span>
+                        </td>
+               
+                    </tr>
+               
+                </table>
+            
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div *ngIf="!isAddButtonPressed" class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Update User</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="isAddButtonPressed" class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add User</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form [formGroup]="EditForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                       
+                        <div class="col-6">
+                            <div class="md-form form-sm">
+                                <mdb-icon fas icon="plane" class="prefix"></mdb-icon>
+                                <input mdbInput  type="text" id="form2" class="form-control"
+                                    formControlName="flightNo" />
+                                <label for="form2">Flight No.</label>
+                                <mdb-error *ngIf="
+                                 flightNo.invalid &&
+                                  (flightNo.dirty ||flightNo.touched)
+                                ">
+                                    <p *ngIf="flightNo.errors?.required" class="text-danger">flight No is
+                                        required</p>
+                                    
+                                </mdb-error>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-6">
+                            <div class="md-form form-sm">
+                                <mdb-icon fas icon="calendar" class="prefix"></mdb-icon>
+                                <input mdbInput  type="text" id="form65" class="form-control"
+                                    formControlName="date" />
+                                <label for="form65">Date (i.e dd-mm-yyyy)</label>
+                                <mdb-error *ngIf="
+                                date?.invalid &&
+                                  ( date?.dirty ||  date?.touched)
+                                ">
+                                    <p *ngIf="date?.errors?.required" class="text-danger">Date is
+                                        required</p>
+                                   
+                                </mdb-error>
+    
+                            </div>
+                            </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-form form-sm">
+                                <mdb-icon fas icon="map-marker" class="prefix"></mdb-icon>
+                                <input mdbInput type="text" id="form22" class="form-control"
+                                    formControlName="source" />
+                                <label for="form22">Source</label>
+                                <mdb-error *ngIf="
+                         source?.invalid &&
+                          (source?.dirty || source?.touched)
+                        ">
+                                   Source is required
+                                </mdb-error>
+                                <mdb-success *ngIf="
+                                source?.valid &&
+                          (source?.dirty || source?.touched)
+                        ">
+                                </mdb-success>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-form form-sm">
+                                <mdb-icon fas icon="location-arrow" class="prefix"></mdb-icon>
+                                <input mdbInput  type="text" id="form23" class="form-control"
+                                    formControlName="destination" />
+                                <label for="form23">Destination</label>
+                                <mdb-error *ngIf="
+                                destination?.invalid &&
+                                  (destination?.dirty || destination?.touched)
+                                ">
+                                    destination is required
+                                </mdb-error>
+                                <mdb-success *ngIf="
+                                destination?.valid &&
+                                  (destination?.dirty ||destination?.touched)
+                                ">
+                                </mdb-success>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                    <div class="md-form form-sm">
+                        <mdb-icon fas icon="clock" class="prefix"></mdb-icon>
+                        <input mdbInput  type="text" id="form24" class="form-control"
+                            formControlName="arrivalTime" />
+                        <label for="form24">Arrival Time (i.e 08:00)</label>
+                        <mdb-error *ngIf="
+                         arrivalTime.invalid &&
+                          (arrivalTime.dirty ||arrivalTime.touched)
+                        ">
+                            <p *ngIf="arrivalTime.errors?.required" class="text-danger">time is
+                                required (i.e 09:00 or 13:01 )</p>
+                           
+                        </mdb-error>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="md-form form-sm">
+                        <mdb-icon fas icon="clock" class="prefix"></mdb-icon>
+                        <input mdbInput  type="text" id="form25" class="form-control"
+                            formControlName="departureTime" />
+                        <label for="form25">departureTime Time (i.e 08:00)</label>
+                        <mdb-error *ngIf="departureTime.invalid &&(departureTime.dirty || departureTime.touched)">
+                            <p *ngIf="departureTime.errors?.required" class="text-danger">time is
+                                required (i.e 09:00 or 13:01 )</p>
+                           
+                        </mdb-error>
+                       
+                    </div>
+                </div>
+                </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="md-form form-sm">
+                                <mdb-icon fas icon="clock" class="prefix"></mdb-icon>
+                                <input mdbInput  type="text" id="form5" class="form-control"
+                                    formControlName="duration" />
+                                <label for="form5">Duration (i.e 2h 24m</label>
+                                <mdb-error *ngIf="
+                                duration?.invalid &&
+                                  ( duration?.dirty ||  duration?.touched)
+                                ">
+                                    <p *ngIf="duration?.errors?.required" class="text-danger">Date is
+                                        required</p>
+                                   
+                                </mdb-error>
+    
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="md-form form-sm">
+                                <mdb-icon fas icon="rupee-sign" class="prefix"></mdb-icon>
+                                <input mdbInput  type="text" id="form72" class="form-control"
+                                    formControlName="price" />
+                                <label for="form72">Price</label>
+                                <mdb-error *ngIf="
+                               price?.invalid &&
+                                  ( price?.dirty ||  price?.touched)
+                                ">
+                                    <p *ngIf="price?.errors?.required" class="text-danger">Price is
+                                        required</p>
+                                    
+                                </mdb-error>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-5 ">
+                                <div class="text-center mb-5 ">
+                                    <button *ngIf="!isAddButtonPressed" [disabled]="!EditForm.valid" type="submit" mdbBtn color="success" 
+                                        class="z-depth-1a waves-light" mdbWavesEffect>Update
+                                    </button>
+                                    <button *ngIf="isAddButtonPressed" [disabled]="!EditForm.valid" type="submit" mdbBtn color="info" 
+                                        class="z-depth-1a waves-light" mdbWavesEffect>Add
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="col-md-5">
+                                <button type="button" mdbBtn color="danger"
+                                    class="z-depth-1a waves-light" (click)="frame.hide()" mdbWavesEffect>Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

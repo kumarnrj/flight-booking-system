@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,19 +9,38 @@ import { Router } from '@angular/router';
 })
 export class AdminDashboardComponent implements OnInit {
  
+  
   public isoutline = true;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
+
+ 
+
+
   myProfile(){}
 
+  //clicked on view user
   viewUser(){
    this.router.navigate(['user-detail'])
   }
 
+//clicked on show booking 
   booking(){
     this.router.navigate(['booking-detail'])
   }
+
+  //clicked on add flight
+  updateFlight(){
+    this.router.navigate(['update-flight'])
+  }
+
+ 
+
+
+
+
+
 }

@@ -8,6 +8,7 @@ import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { UpdateFlightComponent } from './component/update-flight/update-flight.component';
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
 import {UserLoggedIn} from './service/auth-guard.service'
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'adminDashboard',component:AdminDashboardComponent},
   {path:'user-detail',component:UserDetailComponent},
   {path:'booking-detail',component:BookingDetailComponent},
+  {path:'update-flight',component:UpdateFlightComponent},
   {path:'**',component:PageNotFoundComponent},
 ];
 

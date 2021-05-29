@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookingDetails } from '../Models/BookingDetails';
@@ -59,6 +60,28 @@ export class AuthSerivceService {
       date:date
     });
   }
+
+  //getting all the flight details
+  getAllFlight(){
+    return this.http.get(`${this.flighturl}allFlight`);
+  }
+
+// updating the flight details
+updateFlight(flightDetail:any,flightId:String|undefined){
+  return this.http.put(`${this.flighturl}updateFlight/${flightId}`,flightDetail);
+}
+
+// add flight 
+addFlight(flightDetail:flightDetail){
+  return this.http.post(`${this.flighturl}addFlight`,flightDetail);
+}
+
+// remove the flight 
+removeFlight(flightId:String){
+  return this.http.delete(`${this.flighturl}deleteFlight/${flightId}`);
+}
+
+
 
   // get by id
   getFlightDetailsById(id:String|undefined):Observable<flightDetail>{
