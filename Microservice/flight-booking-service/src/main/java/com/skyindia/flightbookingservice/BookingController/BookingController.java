@@ -49,13 +49,14 @@ public class BookingController {
     @PostMapping("/addBooking")
     public ResponseEntity<?> addBooking(@RequestBody FlightBookingDetails flightBookingDetails){
         System.out.println(flightBookingDetails);
+        flightBookingDetails.setBookingStatus("PENDING");
         FlightBookingDetails flightBookingDetails1 = service.addBooking(flightBookingDetails);
         return ResponseEntity.ok(flightBookingDetails);
     }
 
-    @PutMapping("/updateBooking")
-    public ResponseEntity<?> updateBooking(@RequestBody FlightBookingDetails flightBookingDetails){
-        FlightBookingDetails flightBookingDetails1 = service.updateBooking(flightBookingDetails);
+    @PutMapping("/updateBooking/{orderId}")
+    public ResponseEntity<?> updateBooking(@RequestBody FlightBookingDetails flightBookingDetails,@PathVariable("orderId") String orderId){
+        FlightBookingDetails flightBookingDetails1 = service.updateBooking(flightBookingDetails,orderId);
         return ResponseEntity.ok(flightBookingDetails);
     }
 

@@ -23,8 +23,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private auth:AuthSerivceService,
     private router:Router){}
-
+ 
   ngOnInit(): void {
+    
+    if(localStorage.getItem('count')==="1"){
+      localStorage.removeItem('count');
+      window.location.reload();
+    }
     
   }
   login(){
@@ -41,6 +46,7 @@ export class LoginComponent implements OnInit {
                 this.currentUser= res;
                 localStorage.setItem("id",this.currentUser._id.toString());
                 localStorage.setItem("ROLE",this.currentUser.role.toString());
+                sessionStorage.setItem("login","yes");
                 if(this.currentUser.role.toString()==="ROLE_ADMIN"){
                   this.router.navigate(['adminDashboard']);
                 }

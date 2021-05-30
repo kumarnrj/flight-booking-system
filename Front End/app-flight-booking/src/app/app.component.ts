@@ -9,14 +9,23 @@ import { AuthSerivceService } from './service/auth-serivce.service';
 })
 export class AppComponent {
   title = 'app-flight-booking';
-
+  public loggedIn=true;
 constructor(private auth:AuthSerivceService,private router:Router){}
+
+ngOnInit(){
+  this.loggedIn = this.auth.isUserLoggedIn();
+  
+}
+
+
+
 
   logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("id");
     localStorage.removeItem("ROLE");
+    this.ngOnInit();
     this.router.navigate(['login']);
   }
 

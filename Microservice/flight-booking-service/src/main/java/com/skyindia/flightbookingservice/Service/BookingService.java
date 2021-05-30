@@ -33,8 +33,13 @@ public class BookingService {
         return repository.save(flightBookingDetails);
     }
 
-    public FlightBookingDetails updateBooking(FlightBookingDetails flightBookingDetails) {
-         return  repository.save(flightBookingDetails);
+    public FlightBookingDetails updateBooking(FlightBookingDetails flightBookingDetails,String orderId) {
+        FlightBookingDetails existingBooking = repository.findById(orderId).get();
+         if(existingBooking!=null){
+             flightBookingDetails.set_id(existingBooking.get_id());
+             return  repository.save(flightBookingDetails);
+         }
+         return  null;
 
     }
 

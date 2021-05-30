@@ -4,6 +4,7 @@ import { AuthSerivceService } from 'src/app/service/auth-serivce.service';
 import   jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import 'jspdf-autotable';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-my-booking',
@@ -14,22 +15,48 @@ export class MyBookingComponent implements OnInit {
 
   public bookingList:BookingDetails[] |undefined;
 
+  public iswarning=true;
+  public isPill = true;
+
   constructor(private auth:AuthSerivceService) { }
   
   ngOnInit(): void {
     setTimeout(() => {
     
-      this.auth.getAllBooking()
+      this.auth.getAllBookingByCustomerId(localStorage.getItem("id"))
         .subscribe((res:any) => {
           this.bookingList = res;
         })
   }, 1);
   }
 
-  cancelOrder(booking:any){}
+  //cancel Order is clicked
+  cancelOrder(booking:any){
 
-  head = [['ID', 'NAME', 'DESIGNATION', 'DEPARTMENT']]
+  swal.fire({
+              title: 'Are you sure?',
+              text: "You won't get refund if you cancel the booking",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, cancel it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                  let bookingId = booking._id;
+                  booking.bookingStatus="CANCELED";
 
+                  this.auth.updateOrder(booking,bookingId)
+                  .subscribe(res=>{
+                    swal.fire('Canceled!','Your bookig has been canceled.','success')
+                  })       
+               }
+            })
+  }
+
+
+  
+// download button clicked
   download(booking:any){
     console.log(booking)
 
@@ -38,13 +65,13 @@ export class MyBookingComponent implements OnInit {
     doc.setFontSize(18);
     doc.text('Ticket Detail', 80, 8);
     doc.setFontSize(15);
-    doc.setTextColor(100);
+    
     doc.text(`Source: ${booking.source}`,25,25);
     doc.text(`Destination: ${booking.destination}`,80,25)
     doc.text(`Arrival Time: ${booking.arrivalTime}`,25,40)
     doc.text(`Departure Time: ${booking.departureTime}`,80,40)
     doc.text(`Date: ${booking.date}`,25,50)
-    doc.text(`Price: ${booking.price}`,80,50)
+    doc.text(`FlightNo: ${booking.flightNo}`,80,50)
     doc.line(20, 60, 200, 60)
     doc.setFontSize(18);
     doc.setTextColor("black")
@@ -63,15 +90,32 @@ export class MyBookingComponent implements OnInit {
       let x2=88;
       let y2=82;
       for(let i=0;i< (booking.passengers.length);i++){
-        doc.text(`Name: ${booking.passengers[i].firstname} ${booking.passengers[i].lastname}`,x1,y1+10)
-        doc.text(`Contact: ${booking.passengers[i].contact}`,x2,y2+10)
+        doc.text(`Passenger ${(i+1)+1}`,80,y1+10)
+        doc.text(`Name: ${booking.passengers[i].firstname} ${booking.passengers[i].lastname}`,x1,y1+20)
+        doc.text(`Contact: ${booking.passengers[i].contact}`,x2,y2+20);
+        doc.text(`Age: ${booking.passengers[i].age}`,x1,y1+30);
+        doc.text(`Gender: ${booking.passengers[i].gender}`,x2,y2+30)
+        y1=y1+30;
+        y2=y2+30;
       }
+      doc.line(20, y1+5, 200, y2+5)
+      y1=y1+5;
+      y2=y2+5;
+      doc.setFontSize(18);
+      doc.text('Payment Details', 80, y1+10);
+      y1=y1+10;
+      doc.setFontSize(15);
+      doc.text(`Payment Status: ${booking.paymentStatus}`,x1,y1+10);
+      doc.text(`Payment Id: ${booking.paymentId}`,x2+10,y1+10);
+      doc.text(`Booking Status:${booking.bookingStatus}`,x1,y1+20);
+
+      doc.text('Digitally Signed By',150,y1+50);
+      doc.text('SkyIndia',150,y1+60)
     }
-     // below line for Open PDF document in new tab
-     doc.output('dataurlnewwindow')
+     
 
      // below line for Download PDF document  
-     doc.save('myteamdetail.pdf');
+     doc.save('skyIndiaTicket.pdf');
     
   }  
 }

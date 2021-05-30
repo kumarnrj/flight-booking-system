@@ -13,6 +13,7 @@ export interface BookingDetails{
       paymentStatus:String,
       bookingStatus:String,
      paymentId:String,
+     flightNo:String|undefined,
      passengers:Passenger[]
      
 }

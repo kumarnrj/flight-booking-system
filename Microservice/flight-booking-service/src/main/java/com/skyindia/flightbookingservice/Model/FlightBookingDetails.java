@@ -22,6 +22,7 @@ public class FlightBookingDetails {
     private String paymentStatus;
     private String bookingStatus;
     private String paymentId;
+    private String flightNo;
     private List<Passenger> passengers;
 
     public List<Passenger> getPassengers() {
@@ -35,7 +36,7 @@ public class FlightBookingDetails {
     public FlightBookingDetails() { }
 
 
-    public FlightBookingDetails(String _id, String customerId, String custmerFirstname, String customerLastname, String customerContact, String source, String destination, String arrivalTime, String departureTime, String date, String paymentStatus, String bookingStatus, String paymentId, List<Passenger> passengers) {
+    public FlightBookingDetails(String _id, String customerId, String custmerFirstname, String customerLastname, String customerContact, String source, String destination, String arrivalTime, String departureTime, String date, String paymentStatus, String bookingStatus, String paymentId, String flightNo, List<Passenger> passengers) {
         this._id = _id;
         this.customerId = customerId;
         this.custmerFirstname = custmerFirstname;
@@ -49,6 +50,7 @@ public class FlightBookingDetails {
         this.paymentStatus = paymentStatus;
         this.bookingStatus = bookingStatus;
         this.paymentId = paymentId;
+        this.flightNo = flightNo;
         this.passengers = passengers;
     }
 
@@ -66,6 +68,14 @@ public class FlightBookingDetails {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getFlightNo() {
+        return flightNo;
+    }
+
+    public void setFlightNo(String flightNo) {
+        this.flightNo = flightNo;
     }
 
     public String getCustmerFirstname() {
@@ -173,6 +183,7 @@ public class FlightBookingDetails {
                 ", paymentStatus='" + paymentStatus + '\'' +
                 ", bookingStatus='" + bookingStatus + '\'' +
                 ", paymentId='" + paymentId + '\'' +
+                ", flightNo='" + flightNo + '\'' +
                 ", passengers=" + passengers +
                 '}';
     }

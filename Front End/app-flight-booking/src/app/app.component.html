@@ -2,22 +2,34 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand" href="/home">SkyIndia</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
 
     <!-- Links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
+      <li class="nav-item ">
+        <a class="nav-link waves-light" href="/flight-search" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon>Search Flight<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item ">
+        <a class="nav-link waves-light" routerLink="/contact-us" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
+      </li>
+      
+    <li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> Settings</a>
+      <a class="nav-link waves-light" routerLink="/login">
+        <div *ngIf=!loggedIn>
+        <mdb-icon fas icon="sign-in-alt"></mdb-icon>Login
+      </div>
+      </a>
+   
       </li>
 
+      
       <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
+      <li *ngIf=loggedIn class="nav-item dropdown" dropdown>
+       
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
@@ -25,7 +37,7 @@
           <a class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Log out</a>
         </div>
       </li>
-
+    
     </ul>
     <!-- Links -->
   </links>
@@ -35,3 +47,83 @@
 <!--/.Navbar-->
 
 <router-outlet></router-outlet>
+
+<!-- Footer-->
+
+<div class="container-fluid">
+  <footer class="page-footer font-medium navbar-dark cyan mt-5 pt-4">
+  
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+  
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+  
+          <!-- Content -->
+          <h5 class="text-uppercase">SkyIndia</h5>
+          <p>Enjoy hassle free and courteous service on board and beyond with us. On making a flight booking
+            with us, you can enjoy the lowest booking and cancellation fee, exclusive flight offers and add-ons, along with a personalised and smooth experience 
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none pb-3">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+  
+            <!-- Links -->
+            <h5 class="text-uppercase">Links</h5>
+  
+            <ul class="list-unstyled">
+              <li>
+                <a href="home">Home</a>
+              </li>
+              <li>
+                <a href="flight-search">Search Flight</a>
+              </li>
+              <li>
+                <a href="contact-us">Contact</a>
+              </li>
+              <li>
+                <a href="signup">Register</a>
+              </li>
+            </ul>
+  
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-3 mb-md-0 mb-3">
+  
+            <!-- Links -->
+            <h5 class="text-uppercase">Connect With Us</h5>
+  
+            <div className="text-center">
+             
+             <a> <i class="fab fa-instagram ml-5 mr-3" style="font-size: 30px;color:  #DD2A7B;" ></i></a>
+             <a><i class="fab  fa-facebook-square mr-3" style="font-size: 30px; color: #ADB9D3;"></i></a>
+             <a><i class="fab  fa-twitter" style="font-size: 30px; color: #08a0e9;"></i></a>
+          </div>
+  
+          </div>
+          <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+      <a href="/home"> SkyIndia.in</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  </div>
+  <!-- Footer -->
+  

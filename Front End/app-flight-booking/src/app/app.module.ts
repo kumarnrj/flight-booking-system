@@ -19,7 +19,8 @@ import { BookingDetailComponent } from './component/booking-detail/booking-detai
 import { UpdateFlightComponent } from './component/update-flight/update-flight.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { UserDashboardComponent } from './component/user-dashboard/user-dashboard.component';
-import { MyBookingComponent } from './component/my-booking/my-booking.component'
+import { MyBookingComponent } from './component/my-booking/my-booking.component';
+import { ContactUsComponent } from './component/contact-us/contact-us.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { MyBookingComponent } from './component/my-booking/my-booking.component'
     UpdateFlightComponent,
     ProfileComponent,
     UserDashboardComponent,
-    MyBookingComponent
+    MyBookingComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

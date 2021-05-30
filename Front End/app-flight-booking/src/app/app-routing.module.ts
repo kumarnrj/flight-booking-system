@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
 import { BookFlightComponent } from './component/book-flight/book-flight.component';
 import { BookingDetailComponent } from './component/booking-detail/booking-detail.component';
+import { ContactUsComponent } from './component/contact-us/contact-us.component';
 import { FlightSearchComponent } from './component/flight-search/flight-search.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'myaccount/profile',component:ProfileComponent},
   {path:'userDashboard',component:UserDashboardComponent},
   {path:'my-orders',component:MyBookingComponent},
+  {path:'contact-us',component:ContactUsComponent},
   {path:'**',component:PageNotFoundComponent},
 ];
 

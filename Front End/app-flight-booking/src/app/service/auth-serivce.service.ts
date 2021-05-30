@@ -100,6 +100,16 @@ removeFlight(flightId:String){
   getAllBooking(){
     return this.http.get(`${this.bookingUrl}allbooking`)
   }
+  
+  // get booking by customerId
+  getAllBookingByCustomerId(custId:String|null){
+    return this.http.get(`${this.bookingUrl}findByCustomerId/${custId}`);
+  }
+
+  // update the booking by id 
+  updateOrder(flightDetail:flightDetail,orderId:String|undefined){
+    return this.http.put(`${this.bookingUrl}updateBooking/${orderId}`,flightDetail);
+  }
 
  // payment service 
  private paymentUrl ="http://localhost:8083/api/"

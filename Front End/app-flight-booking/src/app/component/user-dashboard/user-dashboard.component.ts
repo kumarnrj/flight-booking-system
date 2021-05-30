@@ -29,6 +29,8 @@ public isoutline=true;
     localStorage.removeItem("email");
     localStorage.removeItem("id");
     localStorage.removeItem("ROLE");
+    localStorage.setItem('count','1');
+    this.ngOnInit();
     this.router.navigate(['login']);
   }
 }

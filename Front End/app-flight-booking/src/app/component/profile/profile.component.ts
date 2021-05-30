@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { userDetails } from 'src/app/Models/UserDetails';
 import { AuthSerivceService } from 'src/app/service/auth-serivce.service';
 import swal from 'sweetalert2';
@@ -22,7 +23,8 @@ export class ProfileComponent implements OnInit {
 
 
   //constructor
- constructor(private auth:AuthSerivceService,private fb:FormBuilder){}
+ constructor(private auth:AuthSerivceService,private fb:FormBuilder,
+  private router:Router){}
 
 
 
@@ -117,6 +119,17 @@ onPersonalInfoCan(){
  
 }
 
+dashboard(){
+  let role=localStorage.getItem('ROLE');
+  if(role==="ROLE_USER"){
+    this.router.navigate(["userDashboard"])
+  }
+ else if(role==="ROLE_ADMIN"){
+    this.router.navigate(["adminDashboard"])
+  }else{
+    this.router.navigate(["hhg"]);
+  }
+}
 
  // getter for handling the form UI
  // creating form builder to handle the response in the UI

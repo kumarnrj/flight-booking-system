@@ -108,7 +108,9 @@ onSubmit(){
     date:"",
     bookingStatus:"",
     paymentId:'',
+    flightNo:'',
     paymentStatus:'"',
+    
     passengers:[]
 
   };
@@ -125,6 +127,7 @@ onSubmit(){
   bookingDetail.bookingStatus="",
   bookingDetail.paymentId="",
   bookingDetail.paymentStatus="PENDING",
+  bookingDetail.flightNo= this.flighDetail?.flightNo;
   bookingDetail.passengers= this.registrationForm.value.passengers
  
   console.log(bookingDetail)
@@ -201,7 +204,7 @@ paymentStart(){
 paymentHandler(res: any) {
   this.zone.run(() => {
     console.log("inside payment handler");
-    this.updatePaymentOnServer(res.razorpay_payment_id, res.razorpay_order_id, "paid")
+    this.updatePaymentOnServer(res.razorpay_payment_id, res.razorpay_order_id, "PAID")
   });
 }
 
