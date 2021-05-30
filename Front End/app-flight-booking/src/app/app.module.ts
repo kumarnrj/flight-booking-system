@@ -17,7 +17,9 @@ import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashb
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
 import { BookingDetailComponent } from './component/booking-detail/booking-detail.component';
 import { UpdateFlightComponent } from './component/update-flight/update-flight.component';
-import { ProfileComponent } from './component/profile/profile.component'
+import { ProfileComponent } from './component/profile/profile.component';
+import { UserDashboardComponent } from './component/user-dashboard/user-dashboard.component';
+import { MyBookingComponent } from './component/my-booking/my-booking.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import { ProfileComponent } from './component/profile/profile.component'
     UserDetailComponent,
     BookingDetailComponent,
     UpdateFlightComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserDashboardComponent,
+    MyBookingComponent
   ],
   imports: [
     BrowserModule,

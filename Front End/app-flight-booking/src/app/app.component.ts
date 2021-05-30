@@ -19,4 +19,12 @@ constructor(private auth:AuthSerivceService,private router:Router){}
     localStorage.removeItem("ROLE");
     this.router.navigate(['login']);
   }
+
+  myAccount(){
+    if(localStorage.getItem("ROLE")==='ROLE_USER'){
+      this.router.navigate(['userDashboard']);
+    }else{
+      this.router.navigate(['adminDashboard'])
+    }
+  }
 }

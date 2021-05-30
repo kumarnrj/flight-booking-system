@@ -24,7 +24,7 @@ export class AuthSerivceService {
     })
   }
 
-  getUserData(email:String):Observable<userDetails>{
+  getUserData(email:String|null):Observable<userDetails>{
     return this.http.get<userDetails>(`${this.url}findByEmail/${email}`)
   }
 
@@ -45,7 +45,7 @@ export class AuthSerivceService {
    }
 
    // update a user
-   updateUser(user:userDetails,userId:String){
+   updateUser(user:userDetails,userId:String|undefined){
      return this.http.put(`${this.url}updateUser/${userId}`,user);
    }
 
