@@ -22,19 +22,19 @@ export class ContactUsComponent implements OnInit {
 
  // creating the object to get the form object 
  get name(){
-    return this.validatingForm.get("name");
+    return this.validatingForm?.get("name");
  } 
 
  get email(){
-   return this.validatingForm.get("email");
+   return this.validatingForm?.get("email");
  }
 
  get subject(){
-   return this.validatingForm.get("subject");
+   return this.validatingForm?.get("subject");
  }
 
  get message(){
-   return this.validatingForm.get("message");
+   return this.validatingForm?.get("message");
  }
 
  // sending the customer query

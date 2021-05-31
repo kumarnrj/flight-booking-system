@@ -15,12 +15,19 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private router:Router,private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("login")=="yes"){
+      console.log("inside");
+      window.location.reload();
+      sessionStorage.removeItem("login");
+    }
   }
 
  
 
 
-  myProfile(){}
+  myProfile(){
+    this.router.navigate(["myaccount/profile"]);
+  }
 
   //clicked on view user
   viewUser(){
